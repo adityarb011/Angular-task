@@ -1,0 +1,41 @@
+<div class="left">
+  <button class="btn btn-outline-secondary d-md-block" (click)="onToggle()">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <div class="search">
+    <i class="fas fa-search"></i>
+    <input [(ngModel)]="search" class="form-control border-0 p-0" placeholder="Search employees, jobs..." />
+  </div>
+</div>
+
+<div class="actions">
+  <div class="dropdown">
+    <button class="btn btn-light" id="notifBtn" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="far fa-bell"></i>
+      <span class="badge bg-danger rounded-pill" style="font-size:11px; position:relative; top:-8px; left:-10px;">3</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="notifBtn" style="min-width:260px;">
+      <li *ngFor="let n of notifications">
+        <div class="p-2">
+          <div style="font-weight:600">{{n.text}}</div>
+          <div class="text-muted" style="font-size:12px">{{n.time}}</div>
+        </div>
+        <hr class="my-1" />
+      </li>
+      <li><a class="dropdown-item text-center" href="#">View all notifications</a></li>
+    </ul>
+  </div>
+
+  <div class="dropdown">
+    <button class="btn btn-light" id="userBtn" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="https://i.pravatar.cc/32?img=12" style="border-radius:8px; margin-right:6px;" /> Aditya <i class="fas fa-chevron-down fa-xs"></i>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userBtn">
+      <li><a class="dropdown-item" href="#">Profile</a></li>
+      <li><a class="dropdown-item" href="#">Settings</a></li>
+      <li><hr class="dropdown-divider" /></li>
+      <li><a class="dropdown-item text-danger" href="#">Sign out</a></li>
+    </ul>
+  </div>
+</div>

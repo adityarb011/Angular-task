@@ -1,0 +1,32 @@
+.sidebar-root {
+  background: #1e293b;
+  color: #fff;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .brand {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    a {
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 8px;
+      border-radius: 8px;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #334155;
+        color: #fff;
+      }
+    }
+  }
+}
