@@ -3,25 +3,81 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  // padding: 0 16px;
   border-bottom: 1px solid #e2e8f0;
 
-  .search-box input {
-    padding: 6px 10px;
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    background: #fff;
     border: 1px solid #cbd5e1;
     border-radius: 6px;
+    padding: 4px 8px;
+
+    i {
+      margin-right: 6px;
+      color: #64748b;
+    }
+
+    input {
+      border: none;
+      outline: none;
+      padding: 6px 10px;
+      font-size: 14px;
+      width: 200px;
+
+      &::placeholder {
+        color: #94a3b8;
+      }
+    }
   }
 
   .header-actions {
     display: flex;
     align-items: center;
     gap: 12px;
+  }
 
-    .icon-btn {
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
+  .notif-dropdown {
+    .notif-badge {
+      font-size: 11px;
+      position: absolute;
+      top: -6px;
+      right: -6px;
+    }
+
+    .notif-item {
+      padding: 4px 0;
+
+      .notif-text {
+        font-weight: 600;
+      }
+
+      .notif-time {
+        font-size: 12px;
+        color: #6b7280;
+      }
+    }
+  }
+
+  .user-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    @media(width<767px){
+      display: block;
+      padding: 0px;
+    }
+    img {
+      border-radius: 8px;
+      width: 32px;
+      height: 32px;
     }
   }
 }

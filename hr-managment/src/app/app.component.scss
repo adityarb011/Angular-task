@@ -24,65 +24,90 @@ app-dashboard-page {
 app-footer {
   grid-area: footer;
 }
-.sidebar.show { box-shadow: 0 12px 36px rgba(2,6,23,0.2); }
-/* Main container: 2 columns: sidebar + main area */
+
+/* Sidebar */
+.sidebar {
+  background: linear-gradient(180deg, #0b3b93 0%, #0f62fe 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 14px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 100;
+  transition: left 0.2s ease;
+
+  &.show {
+    box-shadow: 0 12px 36px rgba(2, 6, 23, 0.2);
+  }
+
+  &.overlay {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    width: var(--sidebar-width, 260px);
+    z-index: 1051;
+    transition: left 0.3s ease;
+
+    &.show {
+      left: 0;
+    }
+  }
+}
+
+/* Layout container */
 .app-container {
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
   min-height: 100vh;
 }
 
-/* Sidebar stays fixed width, full height */
-.sidebar {
-  background: linear-gradient(180deg,#0b3b93 0%, #0f62fe 100%);
-  color: #fff;
-  display:flex;
-  flex-direction:column;
-  padding:18px 14px;
-  min-height:100vh;
-  position:relative;
-  z-index:100;
-}
-
-/* Main area (header + content + footer) */
+/* Main area */
 .main-area {
-  display: grid;
   grid-template-rows: auto 1fr auto;
   background: var(--bg);
 }
 
-/* Topbar */
 .topbar {
-  padding:16px 20px;
-  border-bottom:1px solid rgba(15,20,30,0.04);
-  background:transparent;
+  border-bottom: 1px solid rgba(15, 20, 30, 0.04);
+  background: transparent;
 }
 
-/* Content area */
 .content {
-  padding:20px;
-  overflow:auto;
+  padding: 20px;
+  overflow: auto;
 }
 
-/* Footer */
 .app-footer {
-  padding:12px 20px;
-  border-top:1px solid rgba(15,20,30,0.04);
+  padding: 12px 20px;
+  border-top: 1px solid rgba(15, 20, 30, 0.04);
 }
 
-/* Responsive: collapse sidebar on small screens */
-@media (max-width: 768px){
+/* Backdrop for sidebar overlay */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0 */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
   .app-container {
     grid-template-columns: 1fr;
   }
+
   .sidebar {
     position: fixed;
-    left: -100%;
     top: 0;
     bottom: 0;
-    width: var(--sidebar-width);
-    transition: left 0.2s ease;
-  }
-  .sidebar.show { left: 0; }
-}
+    left: -100%;
+    width: var(--sidebar-width, 260px);
+    height: 100vh;
 
+    &.show {
+      left: 0;
+    }
+  }
+}

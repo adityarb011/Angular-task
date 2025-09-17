@@ -1,25 +1,10 @@
-<!-- <div [class.app-shell]="true" [class.sidebar-collapsed]="collapseSidebar" >
-  <aside class="sidebar" [class.show]="mobileSidebarVisible">
-    <app-sidebar (toggleSidebar)="toggleSidebar()"></app-sidebar>
+<div [ngClass]="{ 'app-container': windowWidth >= 767, 'container': windowWidth < 767 }" >
+  <aside class="sidebar" [class.show]="mobileSidebarVisible" [class.overlay]="windowWidth < 767" [class.collapsed]="sidebarCollapsed">
+    <app-sidebar [collapsed]="sidebarCollapsed" (toggleSidebar)="toggleSidebar()">
+    </app-sidebar>
   </aside>
-
-  <header class="topbar">
-    <app-header (toggleSidebar)="toggleSidebar()"></app-header>
-  </header>
-
-  <main class="content" (click)="closeMobileSidebar()">
-    <app-dashboard></app-dashboard>
-  </main>
-
-  <footer class="app-footer">
-    <app-footer></app-footer>
-  </footer>
-</div> -->
-<div class="app-container">
-  <aside class="sidebar" [class.show]="mobileSidebarVisible">
-    <app-sidebar (toggleSidebar)="toggleSidebar()"></app-sidebar>
-  </aside>
-
+  <div class="sidebar-backdrop" *ngIf="mobileSidebarVisible && windowWidth < 767"
+       (click)="closeMobileSidebar()"></div>
   <div class="main-area">
     <header class="topbar">
       <app-header (toggleSidebar)="toggleSidebar()"></app-header>
@@ -34,4 +19,3 @@
     </footer>
   </div>
 </div>
-

@@ -1,27 +1,31 @@
-<div class="brand">
-  <div class="logo">HR</div>
-  <h1>Humanity</h1>
-  <button class="btn btn-sm btn-light ms-auto d-md-none" (click)="onToggle()" title="Close">
-    <i class="fas fa-times"></i>
-  </button>
-</div>
+<main class="sidebar-main">
+  <div class="top-part">
+    <div class="brand">
+      <div class="logo">HR</div>
+      <h1 *ngIf="!collapsed">Humanity</h1>
+      <button class="btn btn-sm btn-light ms-auto toggle-btn" (click)="onToggle()" title="Toggle">
+        <i [ngClass]="collapsed ? 'fas fa-bars' : 'fas fa-times'"></i>
+      </button>
+    </div>
 
-<nav class="d-flex flex-column" aria-label="Main navigation">
-  <div *ngFor="let item of navItems" class="nav-item" [class.active]="item.active">
-    <i class="fas" [ngClass]="item.icon + ' fa-fw'"></i>
-    <div class="nav-label">{{item.label}}</div>
+    <nav class="nav-list" aria-label="Main navigation">
+      <div *ngFor="let item of navItems" class="nav-item mb-3" [class.active]="item.active">
+        <i class="fas" [ngClass]="item.icon + ' fa-fw'"></i>
+        <div class="nav-label" *ngIf="!collapsed">{{item.label}}</div>
+      </div>
+    </nav>
   </div>
-</nav>
 
-<div class="mt-auto">
-  <hr style="opacity:.06">
-  <div style="font-size:13px; color:rgba(255,255,255,0.85);">
-    <div>Account</div>
-    <div style="margin-top:8px;font-weight:600">Aditya </div>
-    <div style="font-size:12px;color:rgba(255,255,255,0.8);">HR Manager</div>
+  <div class="bottom-part mb-4" *ngIf="!collapsed">
+    <hr class="divider" />
+    <div class="account-info">
+      <div class="title">Account</div>
+      <div class="name">Aditya</div>
+      <div class="role">HR Manager</div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-sm btn-light w-100">New</button>
+      <button class="btn btn-sm btn-outline-light w-100">Export</button>
+    </div>
   </div>
-  <div class="mt-3 d-flex gap-2">
-    <button class="btn btn-sm btn-light w-100">New</button>
-    <button class="btn btn-sm btn-outline-light w-100">Export</button>
-  </div>
-</div>
+</main>

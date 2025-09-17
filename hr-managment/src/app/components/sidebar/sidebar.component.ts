@@ -11,19 +11,19 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  @Input() collapsed = false;              
   @Output() toggleSidebar = new EventEmitter<void>();
 
   navItems = [
-    {icon:'fa-chart-pie', label:'Dashboard', active:true},
-    {icon:'fa-users', label:'Employees'},
-    {icon:'fa-briefcase', label:'Jobs'},
-    {icon:'fa-calendar-alt', label:'Calendar'},
-    {icon:'fa-file-alt', label:'Reports'},
-    {icon:'fa-cog', label:'Settings'}
+    { label: 'Dashboard', icon: 'fa-home', active: true },
+    { label: 'Employees', icon: 'fa-users', active: false },
+    { label: 'Attendance', icon: 'fa-calendar-check', active: false },
+    { label: 'Reports', icon: 'fa-chart-bar', active: false },
+    { label: 'Settings', icon: 'fa-cog', active: false }
   ];
 
   onToggle() {
     this.toggleSidebar.emit();
   }
+
 }

@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Output } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,16 +7,15 @@ import { Component, HostListener } from '@angular/core';
 })
 export class AppComponent {
   title = 'hr-dashboard';
-  sidebarCollapsed = false;        // For desktop collapse (optional)
-  mobileSidebarVisible = false;    // For small screens
+  sidebarCollapsed = false;
+  mobileSidebarVisible = false;
+  windowWidth = window.innerWidth;
 
-  // Toggle sidebar (desktop collapse or mobile overlay)
   toggleSidebar() {
-    if (window.innerWidth < 768) {
-      // mobile: slide overlay sidebar
+    if (this.windowWidth < 767) {
       this.mobileSidebarVisible = !this.mobileSidebarVisible;
+      document.body.classList.toggle('no-scroll', this.mobileSidebarVisible);
     } else {
-      // desktop: collapse sidebar (optional, can shrink width)
       this.sidebarCollapsed = !this.sidebarCollapsed;
       document.documentElement.style.setProperty(
         '--sidebar-width',
@@ -25,17 +24,18 @@ export class AppComponent {
     }
   }
 
-  // Close mobile sidebar when clicking outside
   closeMobileSidebar() {
-    if (window.innerWidth < 768) {
+    if (this.windowWidth < 767) {
       this.mobileSidebarVisible = false;
+      document.body.classList.remove('no-scroll');
     }
   }
 
-  @HostListener('window:resize', ['$event'])
+
+  @HostListener('window:resize')
   onResize() {
-    // Reset mobile overlay state when resizing to desktop
-    if (window.innerWidth >= 768) {
+    this.windowWidth = window.innerWidth;
+    if (this.windowWidth >= 767) {
       this.mobileSidebarVisible = false;
     }
   }
